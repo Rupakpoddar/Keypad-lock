@@ -8,4 +8,4 @@ Arduino Keypad library-
 www.arduino.cc/playground/uploads/Code/Keypad.zip
 
 Watch the tutorial video at-
-https://studio.youtube.com/video/zg017yBl9GA/edit
+https://youtu.be/zg017yBl9GA
