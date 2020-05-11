@@ -3,11 +3,10 @@ Buying and installling a keypad lock on your door is not a big deal. But what if
 
 Here you will find all the files required for this project
 
-Arduino Password library-
-http://www.arduino.cc/playground/uploads/Code/Password.zip
+ARDUINO PASSWORD LIBRARY IS NO MORE REQUIRED FOR THIS PROJECT
 
 Arduino Keypad library-
-www.arduino.cc/playground/uploads/Code/Keypad.zip
+https://github.com/Chris--A/Keypad
 
 Watch the tutorial video at-
 https://youtu.be/zg017yBl9GA
