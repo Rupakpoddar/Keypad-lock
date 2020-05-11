@@ -1,18 +1,22 @@
-//Written by Rupak Poddar
-//www.youtube.com/RupakPoddar
-
 /*
-  * is to validate the password 
-  # is to reset attempt
+Written by Rupak Poddar
+www.youtube.com/RupakPoddar
+
+
+  '*' is to validate the password 
+  '#' is to reset attempt
+  
 */
 
-#include <Password.h> //http://www.arduino.cc/playground/uploads/Code/Password.zip
-#include <Keypad.h> //http://www.arduino.cc/playground/uploads/Code/Keypad.zip
+#include <Keypad.h>  //https://github.com/Chris--A/Keypad
+//PASSWORD LIBRARY IS NO MORE REQUIRED FOR THIS PROJECT
 
-Password password = Password( "1234" ); //change password from here
+String password = "1234"; //change the password from here
+String input = "";
 
 const byte ROWS = 4; // Four rows
-const byte COLS = 4; //  columns
+const byte COLS = 4; // Four columns
+
 // Define the Keymap
 char keys[ROWS][COLS] = {
   {'1','2','3','A'},
@@ -28,13 +32,14 @@ byte colPins[COLS] = { 5,4,3,2 };// Connect keypad COL0, COL1, COL2 and COL3 to 
 // Create the Keypad
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
-int lock = 12;
+int door_lock = 12; //connect the door lock to pin 12.
+int lock_delay = 1500; //change the delay from here.
 
 void setup(){
 
   Serial.begin(9600);
   keypad.addEventListener(keypadEvent);
-  pinMode(12, OUTPUT);
+  pinMode(door_lock, OUTPUT);
 }
 
 void loop(){
@@ -48,19 +53,19 @@ void keypadEvent(KeypadEvent eKey){
  Serial.println(eKey);
  switch (eKey){
    case '*': checkPassword(); break;
-   case '#': password.reset(); break;
-   default: password.append(eKey);
+   case '#': input = ""; break;
+   default: input+=eKey;
      }
   }
 }
 
 void checkPassword(){
-  if (password.evaluate()){
+  if (password == input){
     Serial.println("Success");
-    digitalWrite(12, HIGH);
-    delay(1000);
-    digitalWrite(12, LOW);
-    password.reset();
+    digitalWrite(door_lock, HIGH);
+    delay(lock_delay);
+    digitalWrite(door_lock, LOW);
+    input = "";
   }else{
     Serial.println("Wrong");
   }
